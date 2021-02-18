@@ -16,7 +16,7 @@ export default {
   target: 'static',
   // Router
   router: {
-    base: '//vuex-persistedstate-nuxt-ssr/',
+    base: '/vuex-persistedstate-nuxt-ssr/',
   },
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [{ src: '~/plugins/persistedState.client.js' }],
