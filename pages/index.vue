@@ -1,34 +1,99 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card title="Free" icon="github">
-        Open source on <a href="https://github.com/buefy/buefy"> GitHub </a>
-      </card>
+  <div class="p-5 columns">
+    <div class="column">
+      <section>
+        <b-field label="Name">
+          <b-input v-model="userName" type="text"></b-input>
+        </b-field>
 
-      <card title="Responsive" icon="cellphone-link">
-        <b class="has-text-grey"> Every </b> component is responsive
-      </card>
+        <b-field label="Email">
+          <b-input v-model="userEmail" type="email" maxlength="30"> </b-input>
+        </b-field>
 
-      <card title="Modern" icon="alert-decagram">
-        Built with <a href="https://vuejs.org/"> Vue.js </a> and
-        <a href="http://bulma.io/"> Bulma </a>
-      </card>
+        <b-field label="Message">
+          <b-input v-model="message" maxlength="200" type="textarea"></b-input>
+        </b-field>
 
-      <card title="Lightweight" icon="arrange-bring-to-front">
-        No other internal dependency
-      </card>
+        <b-field label="Subject" class="mb-5">
+          <b-select v-model="selected" placeholder="Select a subject" expanded>
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+          </b-select>
+        </b-field>
+      </section>
     </div>
-  </section>
+    <div class="column">
+      <section>
+        <b-field>
+          <b-switch @click.native="switchPersictance" v-model="isSwitch"
+            >Start Persistance</b-switch
+          >
+        </b-field>
+      </section>
+    </div>
+  </div>
 </template>
 
 <script>
-import Card from '~/components/Card'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'HomePage',
 
-  components: {
-    Card,
+  data: () => ({
+    isSwitch: false,
+    userName: '',
+    userEmail: '',
+    message: '',
+    selected: '',
+  }),
+  computed: {
+    ...mapState({
+      persistedState: 'persistedState',
+    }),
+  },
+  methods: {
+    // persist to vuex store
+    ...mapActions({
+      switchPersistanceState: 'switchPersistanceState',
+    }),
+
+    switchPersictance() {
+      // when the switch is turned on do this.
+      if (this.isSwitch === false) {
+        const userInfo = {
+          userName: this.userName,
+          userEmail: this.userEmail,
+          message: this.message,
+          selected: this.selected,
+        }
+
+        this.switchPersistanceState(userInfo)
+      }
+
+      // When the swith is turned off, do this.
+      if (this.isSwitch === true) {
+        this.userName = ''
+        this.userEmail = ''
+        this.message = ''
+        this.selected = ''
+
+        this.switchPersistanceState(null)
+      }
+    },
+  },
+  // Do this when the page reloads
+  mounted() {
+    // check if persisted state exists
+    if (this.persistedState !== null) {
+      this.isSwitch = true
+      this.userName = this.persistedState.userName
+      this.userEmail = this.persistedState.userEmail
+      this.message = this.persistedState.message
+      this.selected = this.persistedState.selected
+    } else {
+      this.isSwitch = false
+    }
   },
 }
 </script>

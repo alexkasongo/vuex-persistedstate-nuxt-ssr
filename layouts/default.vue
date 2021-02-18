@@ -7,7 +7,7 @@
     >
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <img src="~assets/buefy.png" alt="Buefy" height="28" />
+          <img src="~assets/alexlogo.png" alt="Alex Kasongo logo" height="28" />
         </a>
 
         <div class="navbar-burger">
