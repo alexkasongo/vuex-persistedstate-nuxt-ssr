@@ -12,7 +12,12 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
-
+  // Deploy
+  target: 'static',
+  // Router
+  router: {
+    base: '//vuex-persistedstate-nuxt-ssr/',
+  },
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [{ src: '~/plugins/persistedState.client.js' }],
 
