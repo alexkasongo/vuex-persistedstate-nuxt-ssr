@@ -29,6 +29,11 @@
             >Start Persistance</b-switch
           >
         </b-field>
+        <b-field>
+          <p class="subtitle is-5">
+            Fill in the form and then click the switch above
+          </p>
+        </b-field>
       </section>
     </div>
   </div>
