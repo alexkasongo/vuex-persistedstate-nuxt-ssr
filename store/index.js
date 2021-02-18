@@ -1,6 +1,6 @@
 export const state = () => ({
   persistedState: null,
-  alert: false,
+  alertState: false,
 })
 
 export const getters = {}
@@ -9,6 +9,9 @@ export const actions = {
   switchPersistanceState({ commit }, payload) {
     commit('SET_STATE', payload)
     commit('SET_ALERT', true)
+    if (payload === null) {
+      commit('SET_ALERT', false)
+    }
   },
 }
 
@@ -17,6 +20,6 @@ export const mutations = {
     state.persistedState = payload
   },
   SET_ALERT(state, payload) {
-    state.alert = payload
+    state.alertState = payload
   },
 }

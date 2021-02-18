@@ -41,6 +41,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { ToastProgrammatic as Toast } from 'buefy'
+// Toast.open('Toasty!')
 
 export default {
   name: 'HomePage',
@@ -51,11 +53,29 @@ export default {
     userEmail: '',
     message: '',
     selected: '',
+    alert: false,
   }),
   computed: {
     ...mapState({
       persistedState: 'persistedState',
+      alertState: 'alertState',
     }),
+  },
+  watch: {
+    alertState() {
+      if (this.alertState === true) {
+        Toast.open({
+          message: 'Persitance state started!',
+          type: 'is-success',
+        })
+      }
+      if (this.alertState === false) {
+        Toast.open({
+          message: 'Persitance state ended!',
+          type: 'is-danger',
+        })
+      }
+    },
   },
   methods: {
     // persist to vuex store
