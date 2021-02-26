@@ -25,7 +25,7 @@
     <div class="column">
       <section>
         <b-field>
-          <b-switch @click.native="switchPersictance" v-model="isSwitch"
+          <b-switch @click.native="switchPersistance" v-model="isSwitch"
             >Start Persistance</b-switch
           >
         </b-field>
@@ -83,7 +83,7 @@ export default {
       switchPersistanceState: 'switchPersistanceState',
     }),
 
-    switchPersictance() {
+    switchPersistance() {
       // when the switch is turned on do this.
       if (this.isSwitch === false) {
         const userInfo = {
